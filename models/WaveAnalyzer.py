@@ -149,14 +149,14 @@ class WaveAnalyzer:
         if wave_config is None:
             wave_config = [0, 0]
 
-        wave1 = MonoWaveUp(self.df, idx_start=idx_start, skip=wave_config[0])
+        wave1 = MonoWaveUp(lows=self.lows, highs=self.highs, dates=self.dates, idx_start=idx_start, skip=wave_config[0])
         wave1.label = '1'
         wave1_end = wave1.idx_end
         if wave1_end is None:
             if self.verbose: print("Wave 1 has no End in Data")
             return False
 
-        wave2 = MonoWaveDown(self.df, idx_start=wave1_end, skip=wave_config[1])
+        wave2 = MonoWaveDown(lows=self.lows, highs=self.highs, dates=self.dates,idx_start=wave1_end, skip=wave_config[1])
         wave2.label = '2'
         wave2_end = wave2.idx_end
         if wave2_end is None:
